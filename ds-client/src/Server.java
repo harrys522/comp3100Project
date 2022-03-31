@@ -19,4 +19,6 @@ public class Server {
         server.disk = Integer.parseInt(split[7]);
         return server;
     }
+
+    // Command Functions
 }
