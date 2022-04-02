@@ -21,7 +21,7 @@ public class Job {
 
         return job;
     }
-
+    // Incorrect implementation - change to JCPL or something else relevant
     public static Job fromString(String line){
         String[] split = line.split(" ");
         var job = new Job();
