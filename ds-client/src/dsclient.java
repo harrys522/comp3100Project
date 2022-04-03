@@ -1,4 +1,6 @@
 
+import jdk.jfr.SettingDefinition;
+
 import java.io.*;
 import java.net.*;
 import java.nio.Buffer;
@@ -29,30 +31,37 @@ public class dsclient {
             var rcvd = receive(in, "JOBN");
             Job first = Job.fromJOBN(rcvd);
 
-            var usedServers = new ArrayList<Server>();
-            usedServers = getLrrServers(out, in, first); // This part will change for different algorithm.
-            String serverType = usedServers.get(0).type;
-            System.out.println("Got " + usedServers.size() + "x LRR Servers of type: " + usedServers.get(0).type);
+            var Servers = new ArrayList<Server>();
 
-            var currentServer = 0;
-            // Job Scheduling loop
+            Servers = getLrrServers(out, in, first); // This part will change for different algorithm.
+            String serverType = Servers.get(0).type;
+            System.out.println("Got " + Servers.size() + "x LRR Servers of type: " + Servers.get(0).type);
+
+            var currentId = Servers.get(0).id;
+            var lastId = Servers.get(Servers.size() - 1).id;
+
+            send(out, "SCHD" + first.id + " " + serverType + " " + currentId); // Schedule first job from earlier.
+            // Scheduling loop
             while (!(rcvd.equals("NONE"))) {
                 System.out.println("S:" + rcvd);
 
-                if (rcvd.startsWith("JOBN")) {
+                // Schedule a job
+                if (rcvd.startsWith("JOBN") || rcvd.startsWith("JOBP")) {
                     Job currentJob = Job.fromJOBN(rcvd);
-                    var scheduleCmd = currentJob.id + " " + serverType + " " + currentServer;
+                    var scheduleCmd = currentJob.id + " " + serverType + " " + currentId;
                     send(out, "SCHD " + scheduleCmd);
                     //out.write(("SCHD " + currentJob.id + " " + currentJob.type + " " + currentServer + "\n").getBytes());
-                    currentServer++;
-                    if (currentServer > usedServers.size()) {
-                        currentServer = 0;
+                    currentId++;
+                    if (currentId > lastId) {
+                        currentId = 0;
                     }
                 }
-                if(rcvd.equals("OK")){
-                    send(out,"REDY");
+                if (rcvd.equals("OK")) {
+                    send(out, "REDY");
                 }
-                // OTHER COMMANDS ie JCPL
+                if (rcvd.startsWith("JCPL")) {
+                    send(out, "REDY");
+                }
 
 
                 rcvd = in.readLine();
@@ -68,6 +77,7 @@ public class dsclient {
             System.out.println("IO Exception");
         }
     }
+
     public static void send(DataOutputStream out, String cmd) {
         try {
             out.write((cmd + "\n").getBytes());
@@ -76,11 +86,12 @@ public class dsclient {
             System.out.println("IO Exception (send)");
         }
     }
+
     public static String receive(BufferedReader in, String contains) {
         try {
             String rcvd = in.readLine();
             if (rcvd.contains(contains)) {
-                System.out.println("S:" +rcvd);
+                System.out.println("S:" + rcvd);
                 return rcvd;
             } else {
                 System.out.println("Did not receive expected message: " + rcvd);
@@ -91,6 +102,7 @@ public class dsclient {
         }
         return "Error receiving message"; // In theory this should never run.
     }
+
     public static ArrayList<Server> getLrrServers(DataOutputStream out, BufferedReader in, Job first) {
         ArrayList<Server> lrrServers = new ArrayList<Server>();
         try {
@@ -107,10 +119,10 @@ public class dsclient {
             int serverCount = Integer.parseInt(split[1]);
             Server[] servers = new Server[serverCount];
 
-            send(out,"OK");
+            send(out, "OK");
 
             for (int i = 0; i < serverCount; i++) {
-                String rcvd = receive(in,"");
+                String rcvd = receive(in, "");
                 servers[i] = Server.fromString(rcvd);
 
                 // Find most cores
@@ -121,11 +133,11 @@ public class dsclient {
             for (int i = 0; i < serverCount; i++) {
                 // Select based on cores and only the first type.
                 if (servers[i].cores == mostCores) {
-                    if(typefound==false){
-                        typefound=true;
-                        lrrtype=servers[i].type;
+                    if (typefound == false) {
+                        typefound = true;
+                        lrrtype = servers[i].type;
                     }
-                    if(servers[i].type.equals(lrrtype)){
+                    if (servers[i].type.equals(lrrtype)) {
                         lrrServers.add(servers[i]);
                     }
                 }
