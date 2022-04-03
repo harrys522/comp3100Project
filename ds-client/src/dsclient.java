@@ -21,13 +21,13 @@ public class dsclient {
             String username = System.getProperty("user.name");
 
             System.out.println("AUTH " + username + " " + auth);
-            send(out, "AUTH" + username);
+            send(out, "AUTH " + username);
 
             String ready = receive(in, "OK");
             System.out.println("REDY");
             send(out, "REDY");
 
-            // Store the first job
+            // Receive the first job
             var rcvd = receive(in, "JOBN");
             Job first = Job.fromJOBN(rcvd);
 
@@ -40,7 +40,6 @@ public class dsclient {
             var currentId = Servers.get(0).id;
             var lastId = Servers.get(Servers.size() - 1).id;
 
-            send(out, "SCHD" + first.id + " " + serverType + " " + currentId); // Schedule first job from earlier.
             // Scheduling loop
             while (!(rcvd.equals("NONE"))) {
                 System.out.println("S:" + rcvd);

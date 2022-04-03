@@ -1,0 +1,202 @@
+# ds-sim server 14-Feb, 2022 @ MQ - client-server
+# Server-side simulator started with './ds-server -c ./S1DemoConfigs/ds-S1-config01--demo.xml -v brief -n'
+# Waiting for connection to port 50000 of IP address 127.0.0.1
+RCVD HELO
+SENT OK
+RCVD AUTH harry
+# Welcome  harry!
+# The system information can be read from 'ds-system.xml'
+SENT OK
+RCVD REDY
+SENT JOBN 28 0 28087 2 1800 3300
+RCVD SCHD 0 t2.aws 0
+t:         28 job     0 (waiting) on # 0 of server t2.aws (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 58 1 457 2 1300 2600
+RCVD SCHD 1 t2.aws 1
+t:         58 job     1 (waiting) on # 1 of server t2.aws (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:         88 job     0 on # 0 of server t2.aws RUNNING
+SENT JOBN 105 2 43725 1 800 1800
+RCVD SCHD 2 t2.aws 0
+t:        105 job     2 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        105 job     2 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 107 3 664 1 1000 1900
+RCVD SCHD 3 t2.aws 1
+t:        107 job     3 (waiting) on # 1 of server t2.aws (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:        118 job     1 on # 1 of server t2.aws RUNNING
+t:        118 job     3 on # 1 of server t2.aws RUNNING
+SENT JOBN 119 4 18 2 2100 3300
+RCVD SCHD 4 t2.aws 0
+t:        119 job     4 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        119 job     4 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 141 5 19066 1 900 1700
+RCVD SCHD 5 t2.aws 1
+t:        141 job     5 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        141 job     5 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 146 6 1625 4 1200 4300
+RCVD SCHD 6 t2.aws 0
+t:        146 job     6 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        146 job     6 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 165 7 65161 1 700 100
+RCVD SCHD 7 t2.aws 1
+t:        165 job     7 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        165 job     7 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 173 8 19888 1 200 700
+RCVD SCHD 8 t2.aws 0
+t:        173 job     8 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        173 job     8 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 176 9 583 1 300 800
+RCVD SCHD 9 t2.aws 1
+t:        176 job     9 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        176 job     9 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 185 10 1419 2 1000 2200
+RCVD SCHD 10 t2.aws 0
+t:        185 job    10 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        185 job    10 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 189 11 123 3 1800 3300
+RCVD SCHD 11 t2.aws 1
+t:        189 job    11 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        189 job    11 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 192 12 113 4 2700 1600
+RCVD SCHD 12 t2.aws 0
+t:        192 job    12 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        192 job    12 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:        200 job     4 on # 0 of server t2.aws COMPLETED
+SENT JCPL 200 4 t2.aws 0
+RCVD REDY
+t:        287 job    12 on # 0 of server t2.aws COMPLETED
+SENT JCPL 287 12 t2.aws 0
+RCVD REDY
+SENT JOBN 288 13 621 2 600 1400
+RCVD SCHD 13 t2.aws 1
+t:        288 job    13 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        288 job    13 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 293 14 56676 4 3100 3800
+RCVD SCHD 14 t2.aws 0
+t:        293 job    14 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        293 job    14 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:        655 job    11 on # 1 of server t2.aws COMPLETED
+SENT JCPL 655 11 t2.aws 1
+RCVD REDY
+SENT JOBN 697 15 90 3 1500 2400
+RCVD SCHD 15 t2.aws 1
+t:        697 job    15 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        697 job    15 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:        806 job    15 on # 1 of server t2.aws COMPLETED
+SENT JCPL 806 15 t2.aws 1
+RCVD REDY
+t:        858 job     1 on # 1 of server t2.aws COMPLETED
+SENT JCPL 858 1 t2.aws 1
+RCVD REDY
+SENT JOBN 858 16 12 2 900 1200
+RCVD SCHD 16 t2.aws 0
+t:        858 job    16 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        858 job    16 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:        870 job    16 on # 0 of server t2.aws COMPLETED
+SENT JCPL 870 16 t2.aws 0
+RCVD REDY
+SENT JOBN 885 17 269 1 400 1900
+RCVD SCHD 17 t2.aws 1
+t:        885 job    17 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:        885 job    17 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 944 18 81724 2 1100 3800
+RCVD SCHD 18 t2.aws 0
+t:        944 job    18 (running) on # 0 of server t2.aws (active) SCHEDULED
+t:        944 job    18 on # 0 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:       1227 job    10 on # 0 of server t2.aws COMPLETED
+SENT JCPL 1227 10 t2.aws 0
+RCVD REDY
+SENT JOBN 1263 19 288 1 200 1600
+RCVD SCHD 19 t2.aws 1
+t:       1263 job    19 (running) on # 1 of server t2.aws (active) SCHEDULED
+t:       1263 job    19 on # 1 of server t2.aws RUNNING
+SENT OK
+RCVD REDY
+t:       1286 job     6 on # 0 of server t2.aws COMPLETED
+SENT JCPL 1286 6 t2.aws 0
+RCVD REDY
+t:       1359 job    13 on # 1 of server t2.aws COMPLETED
+SENT JCPL 1359 13 t2.aws 1
+RCVD REDY
+t:       1427 job    19 on # 1 of server t2.aws COMPLETED
+SENT JCPL 1427 19 t2.aws 1
+RCVD REDY
+t:       1818 job     3 on # 1 of server t2.aws COMPLETED
+SENT JCPL 1818 3 t2.aws 1
+RCVD REDY
+t:       1964 job     9 on # 1 of server t2.aws COMPLETED
+SENT JCPL 1964 9 t2.aws 1
+RCVD REDY
+t:      12995 job     8 on # 0 of server t2.aws COMPLETED
+SENT JCPL 12995 8 t2.aws 0
+RCVD REDY
+t:      19563 job     5 on # 1 of server t2.aws COMPLETED
+SENT JCPL 19563 5 t2.aws 1
+RCVD REDY
+t:      41001 job     2 on # 0 of server t2.aws COMPLETED
+SENT JCPL 41001 2 t2.aws 0
+RCVD REDY
+t:      48722 job    14 on # 0 of server t2.aws COMPLETED
+SENT JCPL 48722 14 t2.aws 0
+RCVD REDY
+t:      63912 job     0 on # 0 of server t2.aws COMPLETED
+SENT JCPL 63912 0 t2.aws 0
+RCVD REDY
+t:      70055 job    18 on # 0 of server t2.aws COMPLETED
+SENT JCPL 70055 18 t2.aws 0
+RCVD REDY
+t:      74336 job     7 on # 1 of server t2.aws COMPLETED
+SENT JCPL 74336 7 t2.aws 1
+RCVD REDY
+t:      91287 job    17 on # 1 of server t2.aws COMPLETED
+SENT JCPL 91287 17 t2.aws 1
+RCVD REDY
+SENT NONE
+RCVD QUIT
+SENT QUIT
+# -------------------------------------------------------------------------------------
+# 0 t1.micro servers used with a utilisation of 0.00 at the cost of $0.00
+# 0 t1.small servers used with a utilisation of 0.00 at the cost of $0.00
+# 0 t1.medium servers used with a utilisation of 0.00 at the cost of $0.00
+# 2 t2.aws servers used with a utilisation of 100.00 at the cost of $35.81
+# ==================================== [ Summary ] ====================================
+# actual simulation end time: 91287, #jobs: 20 (failed 0 times)
+# total #servers used: 2, avg util: 100.00% (ef. usage: 100.00%), total cost: $35.81
+# avg waiting time: 6, avg exec time: 21374, avg turnaround time: 21380

@@ -1,0 +1,9 @@
+./S1DemoConfigs/ds-S1-config00--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config01--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config02--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config03--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config04--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config05--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config06--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config07--demo.xml: PASSED!
+./S1DemoConfigs/ds-S1-config08--demo.xml: PASSED!

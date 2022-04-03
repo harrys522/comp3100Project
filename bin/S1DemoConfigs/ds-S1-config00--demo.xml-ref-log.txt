@@ -1,0 +1,469 @@
+# ds-sim server 14-Feb, 2022 @ MQ - client-server
+# Server-side simulator started with './ds-server -c ./S1DemoConfigs/ds-S1-config00--demo.xml -v brief -n'
+# Waiting for connection to port 50000 of IP address 127.0.0.1
+RCVD HELO
+SENT OK
+RCVD AUTH harry
+# Welcome  harry!
+# The system information can be read from 'ds-system.xml'
+SENT OK
+RCVD REDY
+SENT JOBN 22 0 923 4 4000 4900
+RCVD SCHD 0 ant 0
+t:         22 job     0 (waiting) on # 0 of server ant (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 25 1 1325 3 600 7600
+RCVD SCHD 1 ant 0
+t:         25 job     1 (waiting) on # 0 of server ant (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:         82 job     0 on # 0 of server ant RUNNING
+t:        587 job     0 on # 0 of server ant COMPLETED
+t:        587 job     1 on # 0 of server ant RUNNING
+SENT JCPL 587 0 ant 0
+RCVD REDY
+SENT JOBN 709 2 1255 1 2700 6000
+RCVD SCHD 2 ant 0
+t:        709 job     2 (running) on # 0 of server ant (active) SCHEDULED
+t:        709 job     2 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       1253 job     1 on # 0 of server ant COMPLETED
+SENT JCPL 1253 1 ant 0
+RCVD REDY
+t:       2805 job     2 on # 0 of server ant COMPLETED
+SENT JCPL 2805 2 ant 0
+RCVD REDY
+SENT JOBN 2866 3 17 1 800 8100
+RCVD SCHD 3 ant 0
+t:       2866 job     3 (running) on # 0 of server ant (active) SCHEDULED
+t:       2866 job     3 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       3561 job     3 on # 0 of server ant COMPLETED
+SENT JCPL 3561 3 ant 0
+RCVD REDY
+SENT JOBN 3590 4 750 1 1300 3400
+RCVD SCHD 4 ant 0
+t:       3590 job     4 (running) on # 0 of server ant (active) SCHEDULED
+t:       3590 job     4 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       4134 job     4 on # 0 of server ant COMPLETED
+SENT JCPL 4134 4 ant 0
+RCVD REDY
+SENT JOBN 4153 5 1400 1 1000 8200
+RCVD SCHD 5 ant 0
+t:       4153 job     5 (running) on # 0 of server ant (active) SCHEDULED
+t:       4153 job     5 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       5751 job     5 on # 0 of server ant COMPLETED
+SENT JCPL 5751 5 ant 0
+RCVD REDY
+SENT JOBN 5779 6 161 1 2900 5100
+RCVD SCHD 6 ant 0
+t:       5779 job     6 (running) on # 0 of server ant (active) SCHEDULED
+t:       5779 job     6 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       5892 job     6 on # 0 of server ant COMPLETED
+SENT JCPL 5892 6 ant 0
+RCVD REDY
+SENT JOBN 5919 7 1167 4 800 4900
+RCVD SCHD 7 ant 0
+t:       5919 job     7 (running) on # 0 of server ant (active) SCHEDULED
+t:       5919 job     7 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:       6705 job     7 on # 0 of server ant COMPLETED
+SENT JCPL 6705 7 ant 0
+RCVD REDY
+SENT JOBN 6748 8 4912 1 2000 4600
+RCVD SCHD 8 ant 0
+t:       6748 job     8 (running) on # 0 of server ant (active) SCHEDULED
+t:       6748 job     8 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      10073 job     8 on # 0 of server ant COMPLETED
+SENT JCPL 10073 8 ant 0
+RCVD REDY
+SENT JOBN 10201 9 5484 1 1600 1600
+RCVD SCHD 9 ant 0
+t:      10201 job     9 (running) on # 0 of server ant (active) SCHEDULED
+t:      10201 job     9 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      13110 job     9 on # 0 of server ant COMPLETED
+SENT JCPL 13110 9 ant 0
+RCVD REDY
+SENT JOBN 13181 10 1912 1 300 3200
+RCVD SCHD 10 ant 0
+t:      13181 job    10 (running) on # 0 of server ant (active) SCHEDULED
+t:      13181 job    10 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      16407 job    10 on # 0 of server ant COMPLETED
+SENT JCPL 16407 10 ant 0
+RCVD REDY
+SENT JOBN 16583 11 190 1 600 2200
+RCVD SCHD 11 ant 0
+t:      16583 job    11 (running) on # 0 of server ant (active) SCHEDULED
+t:      16583 job    11 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      17103 job    11 on # 0 of server ant COMPLETED
+SENT JCPL 17103 11 ant 0
+RCVD REDY
+SENT JOBN 17275 12 261 2 800 600
+RCVD SCHD 12 ant 0
+t:      17275 job    12 (running) on # 0 of server ant (active) SCHEDULED
+t:      17275 job    12 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      19764 job    12 on # 0 of server ant COMPLETED
+SENT JCPL 19764 12 ant 0
+RCVD REDY
+SENT JOBN 20021 13 2093 1 1700 5100
+RCVD SCHD 13 ant 0
+t:      20021 job    13 (running) on # 0 of server ant (active) SCHEDULED
+t:      20021 job    13 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      21892 job    13 on # 0 of server ant COMPLETED
+SENT JCPL 21892 13 ant 0
+RCVD REDY
+SENT JOBN 22311 14 1288 1 2500 2100
+RCVD SCHD 14 ant 0
+t:      22311 job    14 (running) on # 0 of server ant (active) SCHEDULED
+t:      22311 job    14 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      24627 job    14 on # 0 of server ant COMPLETED
+SENT JCPL 24627 14 ant 0
+RCVD REDY
+SENT JOBN 24715 15 4124 1 1300 2300
+RCVD SCHD 15 ant 0
+t:      24715 job    15 (running) on # 0 of server ant (active) SCHEDULED
+t:      24715 job    15 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      28222 job    15 on # 0 of server ant COMPLETED
+SENT JCPL 28222 15 ant 0
+RCVD REDY
+SENT JOBN 28284 16 1581 1 1500 4000
+RCVD SCHD 16 ant 0
+t:      28284 job    16 (running) on # 0 of server ant (active) SCHEDULED
+t:      28284 job    16 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      29123 job    16 on # 0 of server ant COMPLETED
+SENT JCPL 29123 16 ant 0
+RCVD REDY
+SENT JOBN 29444 17 159 1 500 5600
+RCVD SCHD 17 ant 0
+t:      29444 job    17 (running) on # 0 of server ant (active) SCHEDULED
+t:      29444 job    17 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      29668 job    17 on # 0 of server ant COMPLETED
+SENT JCPL 29668 17 ant 0
+RCVD REDY
+SENT JOBN 29716 18 3929 4 4096 4000
+RCVD SCHD 18 ant 0
+t:      29716 job    18 (running) on # 0 of server ant (active) SCHEDULED
+t:      29716 job    18 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      33105 job    18 on # 0 of server ant COMPLETED
+SENT JCPL 33105 18 ant 0
+RCVD REDY
+SENT JOBN 33194 19 1466 1 3300 500
+RCVD SCHD 19 ant 0
+t:      33194 job    19 (running) on # 0 of server ant (active) SCHEDULED
+t:      33194 job    19 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      34964 job    19 on # 0 of server ant COMPLETED
+SENT JCPL 34964 19 ant 0
+RCVD REDY
+SENT JOBN 34984 20 1327 1 3400 7800
+RCVD SCHD 20 ant 0
+t:      34984 job    20 (running) on # 0 of server ant (active) SCHEDULED
+t:      34984 job    20 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      37872 job    20 on # 0 of server ant COMPLETED
+SENT JCPL 37872 20 ant 0
+RCVD REDY
+SENT JOBN 38170 21 4385 1 1500 2400
+RCVD SCHD 21 ant 0
+t:      38170 job    21 (running) on # 0 of server ant (active) SCHEDULED
+t:      38170 job    21 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      40695 job    21 on # 0 of server ant COMPLETED
+SENT JCPL 40695 21 ant 0
+RCVD REDY
+SENT JOBN 40729 22 68 1 3800 7700
+RCVD SCHD 22 ant 0
+t:      40729 job    22 (running) on # 0 of server ant (active) SCHEDULED
+t:      40729 job    22 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      41258 job    22 on # 0 of server ant COMPLETED
+SENT JCPL 41258 22 ant 0
+RCVD REDY
+SENT JOBN 41295 23 40 1 2200 4700
+RCVD SCHD 23 ant 0
+t:      41295 job    23 (running) on # 0 of server ant (active) SCHEDULED
+t:      41295 job    23 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      41500 job    23 on # 0 of server ant COMPLETED
+SENT JCPL 41500 23 ant 0
+RCVD REDY
+SENT JOBN 41601 24 2563 1 1200 4900
+RCVD SCHD 24 ant 0
+t:      41601 job    24 (running) on # 0 of server ant (active) SCHEDULED
+t:      41601 job    24 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      43403 job    24 on # 0 of server ant COMPLETED
+SENT JCPL 43403 24 ant 0
+RCVD REDY
+SENT JOBN 43606 25 4096 1 500 700
+RCVD SCHD 25 ant 0
+t:      43606 job    25 (running) on # 0 of server ant (active) SCHEDULED
+t:      43606 job    25 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      46495 job    25 on # 0 of server ant COMPLETED
+SENT JCPL 46495 25 ant 0
+RCVD REDY
+SENT JOBN 46531 26 1528 1 2800 4600
+RCVD SCHD 26 ant 0
+t:      46531 job    26 (running) on # 0 of server ant (active) SCHEDULED
+t:      46531 job    26 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      47515 job    26 on # 0 of server ant COMPLETED
+SENT JCPL 47515 26 ant 0
+RCVD REDY
+SENT JOBN 47713 27 329 1 600 4300
+RCVD SCHD 27 ant 0
+t:      47713 job    27 (running) on # 0 of server ant (active) SCHEDULED
+t:      47713 job    27 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      47918 job    27 on # 0 of server ant COMPLETED
+SENT JCPL 47918 27 ant 0
+RCVD REDY
+SENT JOBN 48013 28 13 3 1300 1000
+RCVD SCHD 28 ant 0
+t:      48013 job    28 (running) on # 0 of server ant (active) SCHEDULED
+t:      48013 job    28 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      49217 job    28 on # 0 of server ant COMPLETED
+SENT JCPL 49217 28 ant 0
+RCVD REDY
+SENT JOBN 49282 29 3438 1 1800 5600
+RCVD SCHD 29 ant 0
+t:      49282 job    29 (running) on # 0 of server ant (active) SCHEDULED
+t:      49282 job    29 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      52699 job    29 on # 0 of server ant COMPLETED
+SENT JCPL 52699 29 ant 0
+RCVD REDY
+SENT JOBN 52963 30 1098 1 2500 5000
+RCVD SCHD 30 ant 0
+t:      52963 job    30 (running) on # 0 of server ant (active) SCHEDULED
+t:      52963 job    30 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      54312 job    30 on # 0 of server ant COMPLETED
+SENT JCPL 54312 30 ant 0
+RCVD REDY
+SENT JOBN 54390 31 1139 1 1000 2200
+RCVD SCHD 31 ant 0
+t:      54390 job    31 (running) on # 0 of server ant (active) SCHEDULED
+t:      54390 job    31 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      55647 job    31 on # 0 of server ant COMPLETED
+SENT JCPL 55647 31 ant 0
+RCVD REDY
+SENT JOBN 55770 32 492 1 3200 1400
+RCVD SCHD 32 ant 0
+t:      55770 job    32 (running) on # 0 of server ant (active) SCHEDULED
+t:      55770 job    32 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      57388 job    32 on # 0 of server ant COMPLETED
+SENT JCPL 57388 32 ant 0
+RCVD REDY
+SENT JOBN 57419 33 437 1 2700 3200
+RCVD SCHD 33 ant 0
+t:      57419 job    33 (running) on # 0 of server ant (active) SCHEDULED
+t:      57419 job    33 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      58161 job    33 on # 0 of server ant COMPLETED
+SENT JCPL 58161 33 ant 0
+RCVD REDY
+SENT JOBN 58168 34 4377 1 300 5500
+RCVD SCHD 34 ant 0
+t:      58168 job    34 (running) on # 0 of server ant (active) SCHEDULED
+t:      58168 job    34 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      60442 job    34 on # 0 of server ant COMPLETED
+SENT JCPL 60442 34 ant 0
+RCVD REDY
+SENT JOBN 60692 35 1236 1 1500 1400
+RCVD SCHD 35 ant 0
+t:      60692 job    35 (running) on # 0 of server ant (active) SCHEDULED
+t:      60692 job    35 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      62700 job    35 on # 0 of server ant COMPLETED
+SENT JCPL 62700 35 ant 0
+RCVD REDY
+SENT JOBN 62762 36 236 1 3000 6300
+RCVD SCHD 36 ant 0
+t:      62762 job    36 (running) on # 0 of server ant (active) SCHEDULED
+t:      62762 job    36 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      62930 job    36 on # 0 of server ant COMPLETED
+SENT JCPL 62930 36 ant 0
+RCVD REDY
+SENT JOBN 63112 37 2734 4 3200 4400
+RCVD SCHD 37 ant 0
+t:      63112 job    37 (running) on # 0 of server ant (active) SCHEDULED
+t:      63112 job    37 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      66449 job    37 on # 0 of server ant COMPLETED
+SENT JCPL 66449 37 ant 0
+RCVD REDY
+SENT JOBN 66650 38 3488 1 2400 2700
+RCVD SCHD 38 ant 0
+t:      66650 job    38 (running) on # 0 of server ant (active) SCHEDULED
+t:      66650 job    38 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      69607 job    38 on # 0 of server ant COMPLETED
+SENT JCPL 69607 38 ant 0
+RCVD REDY
+SENT JOBN 69648 39 439 1 3000 4000
+RCVD SCHD 39 ant 0
+t:      69648 job    39 (running) on # 0 of server ant (active) SCHEDULED
+t:      69648 job    39 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      70659 job    39 on # 0 of server ant COMPLETED
+SENT JCPL 70659 39 ant 0
+RCVD REDY
+SENT JOBN 70969 40 2896 1 1000 1400
+RCVD SCHD 40 ant 0
+t:      70969 job    40 (running) on # 0 of server ant (active) SCHEDULED
+t:      70969 job    40 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      72789 job    40 on # 0 of server ant COMPLETED
+SENT JCPL 72789 40 ant 0
+RCVD REDY
+SENT JOBN 72887 41 93 1 3000 2300
+RCVD SCHD 41 ant 0
+t:      72887 job    41 (running) on # 0 of server ant (active) SCHEDULED
+t:      72887 job    41 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      73092 job    41 on # 0 of server ant COMPLETED
+SENT JCPL 73092 41 ant 0
+RCVD REDY
+SENT JOBN 73142 42 1302 1 1700 7700
+RCVD SCHD 42 ant 0
+t:      73142 job    42 (running) on # 0 of server ant (active) SCHEDULED
+t:      73142 job    42 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      76287 job    42 on # 0 of server ant COMPLETED
+SENT JCPL 76287 42 ant 0
+RCVD REDY
+SENT JOBN 76366 43 1015 1 600 4800
+RCVD SCHD 43 ant 0
+t:      76366 job    43 (running) on # 0 of server ant (active) SCHEDULED
+t:      76366 job    43 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      77896 job    43 on # 0 of server ant COMPLETED
+SENT JCPL 77896 43 ant 0
+RCVD REDY
+SENT JOBN 78001 44 549 1 3100 2800
+RCVD SCHD 44 ant 0
+t:      78001 job    44 (running) on # 0 of server ant (active) SCHEDULED
+t:      78001 job    44 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      78276 job    44 on # 0 of server ant COMPLETED
+SENT JCPL 78276 44 ant 0
+RCVD REDY
+SENT JOBN 78489 45 3277 2 2700 1400
+RCVD SCHD 45 ant 0
+t:      78489 job    45 (running) on # 0 of server ant (active) SCHEDULED
+t:      78489 job    45 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      81447 job    45 on # 0 of server ant COMPLETED
+SENT JCPL 81447 45 ant 0
+RCVD REDY
+SENT JOBN 81702 46 187 1 400 2300
+RCVD SCHD 46 ant 0
+t:      81702 job    46 (running) on # 0 of server ant (active) SCHEDULED
+t:      81702 job    46 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      82105 job    46 on # 0 of server ant COMPLETED
+SENT JCPL 82105 46 ant 0
+RCVD REDY
+SENT JOBN 82287 47 3144 1 2500 5800
+RCVD SCHD 47 ant 0
+t:      82287 job    47 (running) on # 0 of server ant (active) SCHEDULED
+t:      82287 job    47 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      84949 job    47 on # 0 of server ant COMPLETED
+SENT JCPL 84949 47 ant 0
+RCVD REDY
+SENT JOBN 85147 48 1022 1 2700 1500
+RCVD SCHD 48 ant 0
+t:      85147 job    48 (running) on # 0 of server ant (active) SCHEDULED
+t:      85147 job    48 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      86408 job    48 on # 0 of server ant COMPLETED
+SENT JCPL 86408 48 ant 0
+RCVD REDY
+SENT JOBN 86561 49 419 1 1500 4100
+RCVD SCHD 49 ant 0
+t:      86561 job    49 (running) on # 0 of server ant (active) SCHEDULED
+t:      86561 job    49 on # 0 of server ant RUNNING
+SENT OK
+RCVD REDY
+t:      87391 job    49 on # 0 of server ant COMPLETED
+SENT JCPL 87391 49 ant 0
+RCVD REDY
+SENT NONE
+RCVD QUIT
+SENT QUIT
+# -------------------------------------------------------------------------------------
+# 1 ant servers used with a utilisation of 93.12 at the cost of $2.43
+# ==================================== [ Summary ] ====================================
+# actual simulation end time: 87391, #jobs: 50 (failed 0 times)
+# total #servers used: 1, avg util: 93.12% (ef. usage: 93.12%), total cost: $2.43
+# avg waiting time: 12, avg exec time: 1636, avg turnaround time: 1648
