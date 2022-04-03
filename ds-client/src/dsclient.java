@@ -7,34 +7,29 @@ import java.util.ArrayList;
 public class dsclient {
     public static void main(String[] args) {
         try {
-            Socket s = new Socket("localhost", 50000);
+            int port = 50000;
+            String address = "localhost";
+            Socket s = new Socket(address, port);
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
 
             // ds-server handshake
             send(out, "HELO");
-            String auth = in.readLine();
+            String auth = receive(in, "OK");
             String username = System.getProperty("user.name");
-            if (auth.equals("OK")) {
-                System.out.println("AUTH " + username + " " + auth);
-                send(out, "AUTH" + username);
-            } else {
-                System.out.println("No server response");
-                return;
-            }
-            String ready = in.readLine();
-            if (ready.equals("OK")) {
-                System.out.println("REDY");
-                send(out, "REDY");
-            }
+            System.out.println("AUTH " + username + " " + auth);
+            send(out, "AUTH" + username);
+            String ready = receive(in, "OK");
+            System.out.println("REDY");
+            send(out, "REDY");
 
             // Store the first job
-            var rcvd = in.readLine();
-            System.out.println(rcvd);
+            var rcvd = receive(in, "JOBN");
             Job first = Job.fromJOBN(rcvd);
 
             ArrayList<Server> usedServers = new ArrayList<Server>();
-            usedServers = getLrrServers(out,in);
+            usedServers = getLrrServers(out, in, first);
+            System.out.println("Got LRR Servers of type: " + usedServers.get(0).type);
 
             var currentServer = 0;
             // Job Scheduling loop
@@ -42,17 +37,18 @@ public class dsclient {
                 System.out.println("rcvd:" + rcvd);
 
                 if (rcvd.startsWith("JOBN")) {
-                    Job currentJob = Job.fromString(rcvd);
-                    send(out,"SCHD " + currentJob.id + " " + currentJob.type + " " + currentServer);
+                    Job currentJob = Job.fromJOBN(rcvd);
+                    var scheduleCmd = currentJob.id + " " + currentJob.type + " " + currentServer;
+                    send(out, "SCHD " + scheduleCmd);
                     //out.write(("SCHD " + currentJob.id + " " + currentJob.type + " " + currentServer + "\n").getBytes());
+                    currentServer++;
+                    if (currentServer > usedServers.size()) {
+                        currentServer = 0;
+                    }
                 }
-
                 // OTHER COMMANDS ie JCPL
 
-                currentServer++;
-                if (currentServer > usedServers.size()) {
-                    currentServer = 0;
-                }
+
                 rcvd = in.readLine();
             }
             send(out, "QUIT");
@@ -72,40 +68,31 @@ public class dsclient {
             out.write((cmd + "\n").getBytes());
             out.flush();
         } catch (Exception IOException) {
-            System.out.println("IO Exception");
+            System.out.println("IO Exception (send)");
         }
     }
 
-    public static ArrayList<Server> getLrrServers(DataOutputStream out, BufferedReader in) {
+    public static ArrayList<Server> getLrrServers(DataOutputStream out, BufferedReader in, Job first) {
         ArrayList<Server> lrrServers = new ArrayList<Server>();
         try {
-            //String getCmd = "GETS Capable " + first.cores + " " + first.memory + " " + first.disk;
-            String getCmd = "GETS All";
-            System.out.println(getCmd);
-            send(out, getCmd);
-            String rcvd = "";
-            while(!rcvd.contains("DATA")){
-                rcvd = in.readLine();
-            }
-            String GETInfo = in.readLine();
-            System.out.println(GETInfo);
-
-            // Initialise variables
-            String[] getSplit = GETInfo.split(" ");
-            int serverCount = Integer.getInteger(getSplit[1]);
+            var lrrtype = "";
             int mostCores = 0;
-            System.out.println("DATA" + getSplit[1] + " " + getSplit[2]);
+
+            String getCmd = "GETS Capable " + first.cores + " " + first.memory + " " + first.disk;
+            //String getCmd = "GETS All";
+            System.out.println(getCmd); // Debugging
+            send(out, getCmd);
+            String data = receive(in, "DATA");
+
+            String[] split = data.split(" ");
+            int serverCount = Integer.getInteger(split[1]);
             Server[] servers = new Server[serverCount];
 
-            // OK
-            //send(out, "OK");
-            System.out.println("OK");
+            String rcvd = receive(in, ""); // Initialise variable and print first server.
 
-            var lrrtype = "";
-            // Read GETS All server list output.
-            for (int i = 0; i < servers.length; i++) {
-                String line = in.readLine();
-                servers[i] = Server.fromString(line);
+            for (int i = 0; i < serverCount; i++) {
+                System.out.println(rcvd);
+                servers[i] = Server.fromString(rcvd);
 
                 // Store first server's type.
                 if (lrrServers.get(0) != null) {
@@ -117,11 +104,32 @@ public class dsclient {
                     lrrServers.add(servers[i]);
                     System.out.println(servers[i].cores);
                 }
+                rcvd = in.readLine();
             }
+
             send(out, "OK");
         } catch (Exception IOException) {
-            System.out.println("IO Exception");
+            System.out.println("IO Exception (lrr)");
         }
         return lrrServers;
+    }
+
+    public static String receive(BufferedReader in, String contains) {
+        try {
+            String rcvd = in.readLine();
+            if (rcvd.contains(contains)) {
+                System.out.println(rcvd);
+                return rcvd;
+            } else {
+                while (!rcvd.contains(contains)) {
+                    rcvd = in.readLine();
+                }
+                System.out.println(rcvd);
+                return rcvd;
+            }
+        } catch (Exception IOException) {
+            System.out.println("IO Exception (rcv)");
+        }
+        return "Error recieving message"; // Error handling later
     }
 }

@@ -8,8 +8,8 @@ public class Server {
     int disk;
     public static Server fromString(String line){
         String[] split = line.split(" ");
-
         var server = new Server();
+
         server.type = split[1];
         server.id = Integer.parseInt(split[2]);
         server.state = split[3];
