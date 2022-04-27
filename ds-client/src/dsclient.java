@@ -1,6 +1,3 @@
-
-import jdk.jfr.SettingDefinition;
-
 import java.io.*;
 import java.net.*;
 import java.nio.Buffer;
@@ -11,9 +8,18 @@ public class dsclient {
         try {
             int port = 50000;
             String address = "localhost";
+            String algorithm = "lrr";
             Socket s = new Socket(address, port);
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
+
+            // Handle algorithm argument
+            for(int i=0;i< args.length;i++){
+                if(args[i].equals("-a")){
+                    algorithm = args[i+1];
+                    System.out.println("USING ALGORITHM:" + algorithm);
+                }
+            }
 
             // ds-server handshake
             send(out, "HELO");
@@ -33,38 +39,18 @@ public class dsclient {
 
             var Servers = new ArrayList<Server>();
 
-            Servers = getLrrServers(out, in, first); // This part will change for different algorithm.
-            String serverType = Servers.get(0).type;
-            System.out.println("Got " + Servers.size() + "x LRR Servers of type: " + Servers.get(0).type);
-
-            var currentId = Servers.get(0).id;
-            var lastId = Servers.get(Servers.size() - 1).id;
-
-            // Scheduling loop
-            while (!(rcvd.equals("NONE"))) {
-                System.out.println("S:" + rcvd);
-
-                // Schedule a job
-                if (rcvd.startsWith("JOBN") || rcvd.startsWith("JOBP")) {
-                    Job currentJob = Job.fromJOBN(rcvd);
-                    var scheduleCmd = currentJob.id + " " + serverType + " " + currentId;
-                    send(out, "SCHD " + scheduleCmd);
-                    //out.write(("SCHD " + currentJob.id + " " + currentJob.type + " " + currentServer + "\n").getBytes());
-                    currentId++;
-                    if (currentId > lastId) {
-                        currentId = 0;
-                    }
-                }
-                if (rcvd.equals("OK")) {
-                    send(out, "REDY");
-                }
-                if (rcvd.startsWith("JCPL")) {
-                    send(out, "REDY");
-                }
-
-
-                rcvd = in.readLine();
+            // Apply scheduling algorithm
+            if(algorithm.equals("lrr")){
+                Servers = LRR.getServers(out, in, first);
+                System.out.println("Got " + Servers.size() + "x LRR Servers of type: " + Servers.get(0).type);
+                LRR.schedule(Servers, in, out);
+            } else if(algorithm.equals("fc")) {
+                //Servers = fc.getServers(in,out,first);
+                fc.schedule(Servers,in,out);
+            } else {
+                System.out.println("Algorithm not found:" + algorithm);
             }
+
             send(out, "QUIT");
             //Close connection
             out.flush();
@@ -100,52 +86,5 @@ public class dsclient {
             System.out.println("IO Exception (rcv)");
         }
         return "Error receiving message"; // In theory this should never run.
-    }
-
-    public static ArrayList<Server> getLrrServers(DataOutputStream out, BufferedReader in, Job first) {
-        ArrayList<Server> lrrServers = new ArrayList<Server>();
-        try {
-            boolean typefound = false;
-            var lrrtype = "";
-            int mostCores = 0;
-
-            String getCmd = "GETS Capable " + first.cores + " " + first.memory + " " + first.disk;
-            System.out.println(getCmd); // Debugging
-            send(out, getCmd);
-            String data = receive(in, "DATA");
-
-            String[] split = data.split(" ");
-            int serverCount = Integer.parseInt(split[1]);
-            Server[] servers = new Server[serverCount];
-
-            send(out, "OK");
-
-            for (int i = 0; i < serverCount; i++) {
-                String rcvd = receive(in, "");
-                servers[i] = Server.fromString(rcvd);
-
-                // Find most cores
-                if (servers[i].cores > mostCores) {
-                    mostCores = servers[i].cores;
-                }
-            }
-            for (int i = 0; i < serverCount; i++) {
-                // Select based on cores and only the first type.
-                if (servers[i].cores == mostCores) {
-                    if (typefound == false) {
-                        typefound = true;
-                        lrrtype = servers[i].type;
-                    }
-                    if (servers[i].type.equals(lrrtype)) {
-                        lrrServers.add(servers[i]);
-                    }
-                }
-            }
-            send(out, "OK");
-            return lrrServers;
-        } catch (Exception IOException) {
-            System.out.println("IO Exception (lrr)");
-        }
-        return lrrServers;
     }
 }
