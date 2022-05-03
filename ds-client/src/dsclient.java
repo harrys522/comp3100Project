@@ -41,12 +41,15 @@ public class dsclient {
 
             // Apply scheduling algorithm
             if(algorithm.equals("lrr")){
+
                 Servers = LRR.getServers(out, in, first);
-                System.out.println("Got " + Servers.size() + "x LRR Servers of type: " + Servers.get(0).type);
                 LRR.schedule(Servers, in, out);
+
             } else if(algorithm.equals("fc")) {
-                //Servers = fc.getServers(in,out,first);
-                fc.schedule(Servers,in,out);
+
+                Servers = FF.getServers(out, in, first);
+                FF.schedule(Servers, in, out);
+
             } else {
                 System.out.println("Algorithm not found:" + algorithm);
             }

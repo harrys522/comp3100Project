@@ -23,10 +23,9 @@ public class fc {
         return null;
     }
 
-    public static void schedule(ArrayList<Server> servers, BufferedReader in, DataOutputStream out) {
+    public static void schedule(BufferedReader in, DataOutputStream out, String rcvd) {
         try {
             int currentId = 0;
-            var rcvd = in.readLine();
             // Scheduling loop
             while (!(rcvd.equals("NONE"))) {
                 System.out.println("S:" + rcvd);
@@ -36,10 +35,10 @@ public class fc {
                     Job currentJob = Job.fromJOBN(rcvd);
                     // Update GETS Capable
                     //servers = getServers(in,out,currentJob);
-                    Server used = find(in,out,currentJob);
+                    Server useServer = find(in,out,currentJob);
 
                     //var scheduleCmd = currentJob.id + " " + servers.get(currentId).type + " " + servers.get(currentId).id;
-                    var scheduleCmd = currentJob.id + " " + used.type + " " + used.id;
+                    var scheduleCmd = currentJob.id + " " + useServer.type + " " + useServer.id;
                     dsclient.send(out, "SCHD " + scheduleCmd);
                 }
                 if (rcvd.equals("OK") || rcvd.equals(".")) {
@@ -49,9 +48,6 @@ public class fc {
                     dsclient.send(out, "REDY");
                 }
 
-                if(currentId >= servers.size()){
-                    currentId = 0;
-                }
                 rcvd = in.readLine();
             }
         } catch (Exception IOException) {
