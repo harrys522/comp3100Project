@@ -7,10 +7,9 @@ public class LRR {
     public static ArrayList<Server> getServers(DataOutputStream out, BufferedReader in, Job first) {
         ArrayList<Server> lrrServers = new ArrayList<Server>();
         try {
-            boolean typefound = false;
-            var lrrtype = "";
             int mostCores = 0;
-
+            String serverType ="";
+            boolean typeFound = false;
             String getCmd = "GETS Capable " + first.cores + " " + first.memory + " " + first.disk;
             System.out.println(getCmd); // Debugging
             dsclient.send(out, getCmd);
@@ -34,11 +33,11 @@ public class LRR {
             for (int i = 0; i < serverCount; i++) {
                 // Select based on cores and only the first type.
                 if (servers[i].cores == mostCores) {
-                    if (!typefound) {
-                        typefound = true;
-                        lrrtype = servers[i].type;
+                    if (!typeFound) {
+                        typeFound = true;
+                        serverType = servers[i].type;
                     }
-                    if (servers[i].type.equals(lrrtype)) {
+                    if (servers[i].type.equals(serverType)) {
                         lrrServers.add(servers[i]);
                     }
                 }

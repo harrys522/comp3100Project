@@ -6,6 +6,7 @@ public class Server {
     int cores;
     int memory;
     int disk;
+    boolean available = true;
     public static Server fromString(String line){
         String[] split = line.split(" ");
         var server = new Server();

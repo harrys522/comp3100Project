@@ -6,14 +6,7 @@ public class FF {
     public static ArrayList<Server> getServers(DataOutputStream out, BufferedReader in, Job first) {
         ArrayList<Server> ffServers = new ArrayList<Server>();
         try {
-            boolean typefound = false;
-            var lrrtype = "";
-            int mostCores = 0;
-
-            //String getCmd = "GETS Capable " + first.cores + " " + first.memory + " " + first.disk;
             String getCmd = "GETS All";
-
-            System.out.println(getCmd); // Debugging
             dsclient.send(out, getCmd);
             String data = dsclient.receive(in, "DATA");
 
@@ -51,9 +44,10 @@ public class FF {
                     Server selected = Servers.get(0);
                     for(int i=0;i<Servers.size();i++){
                         Server currentServer = Servers.get(i);
-                        // cores memory disk
-                        if(currentServer.cores >= currentJob.cores && currentServer.memory >= currentJob.memory && currentServer.disk > currentJob.disk) {
+                        boolean fit = currentServer.cores >= currentJob.cores && currentServer.memory >= currentJob.memory && currentServer.disk > currentJob.disk && currentServer.available;
+                        if(fit) {
                             selected = currentServer;
+                            selected.available = false;
                             break;
                         } else {
                             selected = Servers.get(i);
@@ -68,6 +62,12 @@ public class FF {
                     dsclient.send(out, "REDY");
                 }
                 if (rcvd.startsWith("JCPL")) {
+                    // Make server available again
+                    for(int i=0;i< Servers.size();i++){
+                        if()
+                    }
+
+
                     dsclient.send(out, "REDY");
                 }
 
