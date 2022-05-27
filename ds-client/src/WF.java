@@ -1,10 +1,9 @@
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 
-public class FF {
-    public static ArrayList<Server> getServers(BufferedReader in, DataOutputStream out, Job first) {
+public class WF {
+    public static ArrayList<Server> getServers(DataOutputStream out, BufferedReader in, Job first) {
         ArrayList<Server> ffServers = new ArrayList<Server>();
         try {
             String getCmd = "GETS All";
@@ -40,9 +39,16 @@ public class FF {
 
                 // Schedule a job
                 if (rcvd.startsWith("JOBN") || rcvd.startsWith("JOBP")) {
-                    // Find first capable
+                    // Find worst fit (largest and most available server).
                     Job currentJob = Job.fromJOBN(rcvd);
                     Server selected = Servers.get(0);
+
+                    // Running total vars
+                    var runningCores =0;
+                    var runningMem =0;
+                    var runningDisk =0;
+                    // Select by
+
                     for(int i=0;i<Servers.size();i++){
                         Server currentServer = Servers.get(i);
                         boolean fit = currentServer.cores >= currentJob.cores
@@ -77,7 +83,7 @@ public class FF {
                 rcvd = in.readLine();
             }
         } catch (Exception IOException) {
-            System.out.println("IOException (ff Sched)");
+            System.out.println("IOException (wf Sched)");
         }
     }
 }

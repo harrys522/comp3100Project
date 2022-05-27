@@ -14,9 +14,9 @@ public class dsclient {
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
 
             // Handle algorithm argument
-            for(int i=0;i< args.length;i++){
-                if(args[i].equals("-a")){
-                    algorithm = args[i+1];
+            for (int i = 0; i < args.length; i++) {
+                if (args[i].equals("-a")) {
+                    algorithm = args[i + 1];
                     System.out.println("USING ALGORITHM:" + algorithm);
                 }
             }
@@ -40,15 +40,23 @@ public class dsclient {
             var Servers = new ArrayList<Server>();
 
             // Apply scheduling algorithm
-            if(algorithm.equals("lrr")){
-
+            if (algorithm.equals("lrr")) {
                 Servers = LRR.getServers(out, in, first);
                 LRR.schedule(Servers, in, out);
 
-            } else if(algorithm.equals("fc")) {
+            } else if (algorithm.equals("fc")) {
+                FC.schedule(in,out,first);
 
-                Servers = FF.getServers(out, in, first);
+            } else if (algorithm.equals("ff")) {
+                Servers = FF.getServers(in, out, first);
                 FF.schedule(Servers, in, out);
+            }
+            else if (algorithm.equals("wf")) {
+
+                Servers = WF.getServers(out, in, first);
+                WF.schedule(Servers, in, out);
+
+            } else if (algorithm.equals("bf")) {
 
             } else {
                 System.out.println("Algorithm not found:" + algorithm);

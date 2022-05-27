@@ -1,11 +1,10 @@
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 
-public class FF {
-    public static ArrayList<Server> getServers(BufferedReader in, DataOutputStream out, Job first) {
-        ArrayList<Server> ffServers = new ArrayList<Server>();
+public class BF {
+    public static ArrayList<Server> getServers(DataOutputStream out, BufferedReader in, Job first) {
+        ArrayList<Server> bfServers = new ArrayList<Server>();
         try {
             String getCmd = "GETS All";
             dsclient.send(out, getCmd);
@@ -17,17 +16,19 @@ public class FF {
             dsclient.send(out, "OK");
 
             for (int i = 0; i < serverCount; i++) {
+
+
                 String rcvd = dsclient.receive(in, "");
                 Server current = Server.fromString(rcvd);
-                ffServers.add(current);
+                bfServers.add(current);
             }
 
             dsclient.send(out, "OK");
-            return ffServers;
+            return bfServers;
         } catch (Exception IOException) {
             System.out.println("IO Exception (lrr)");
         }
-        return ffServers;
+        return bfServers;
     }
 
     public static void schedule(ArrayList<Server> Servers, BufferedReader in, DataOutputStream out) {
@@ -40,7 +41,7 @@ public class FF {
 
                 // Schedule a job
                 if (rcvd.startsWith("JOBN") || rcvd.startsWith("JOBP")) {
-                    // Find first capable
+                    // Find worst capable
                     Job currentJob = Job.fromJOBN(rcvd);
                     Server selected = Servers.get(0);
                     for(int i=0;i<Servers.size();i++){
@@ -61,7 +62,7 @@ public class FF {
                         }
                     }
 
-                    // SCHD
+                    // SCHD-
                     var scheduleCmd = currentJob.id + " " + selected.type + " " + selected.id; //
                     dsclient.send(out, "SCHD " + scheduleCmd);
                 }
@@ -77,7 +78,7 @@ public class FF {
                 rcvd = in.readLine();
             }
         } catch (Exception IOException) {
-            System.out.println("IOException (ff Sched)");
+            System.out.println("IOException (wf Sched)");
         }
     }
 }
