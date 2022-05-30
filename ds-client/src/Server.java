@@ -8,6 +8,10 @@ public class Server {
     int cores;
     int memory;
     int disk;
+
+    // My variables
+    Server available = this;
+    ArrayList<Job> jobsAssigned = new ArrayList<Job>();
     public static Server fromString(String line){
         String[] split = line.split(" ");
         var server = new Server();
@@ -23,6 +27,7 @@ public class Server {
     public static Server fromComplete(String line, ArrayList<Server> serverList){
         String[] split = line.split(" ");
         var server = new Server();
+        int jobId = Integer.parseInt(split[2]);
         server.type = split[3];
         server.id = Integer.parseInt(split[4]);
 
@@ -33,17 +38,42 @@ public class Server {
                 server = thisServer;
             }
         }
+        for(Job j : server.jobsAssigned){
+            if(j.id == jobId){
+                server.jobsAssigned.remove(j);
+            }
+        }
+
+        // If available.resources == server.resources then:
         server.state = "idle";
         return server;
     }
-    Server available;
-    ArrayList<Job> jobsAssigned = new ArrayList<Job>();
-    public Server use(Server server, Job job) {
-        // Function for changing available resources of a server. Needs better name ie assign/schedule
+
+    public Server schedule(Job job) {
+        // Function for changing available resources of a server.
         jobsAssigned.add(job);
-        server.available.cores -= job.cores;
-        server.available.disk -= job.disk;
-        server.available.memory -= job.memory;
-        return server;
+        this.available.cores -= job.cores;
+        this.available.disk -= job.disk;
+        this.available.memory -= job.memory;
+        return available;
+    }
+
+    public void updateAvailable() {
+        this.available.cores = this.cores;
+        this.available.disk = this.disk;
+        this.available.memory = this.memory;
+
+        for(Job j : jobsAssigned) {
+            this.available.cores -= j.cores;
+            this.available.disk -= j.disk;
+            this.available.memory -= j.memory;
+        }
+    }
+
+    public boolean canFit(Job job){
+        boolean fit = this.available.cores >= job.cores
+                && this.available.memory >= job.memory
+                && this.available.disk >= job.disk;
+        return fit;
     }
 }

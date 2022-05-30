@@ -25,7 +25,7 @@ public class FF {
             dsclient.send(out, "OK");
             return ffServers;
         } catch (Exception IOException) {
-            System.out.println("IO Exception (lrr)");
+            System.out.println("IO Exception (ff)");
         }
         return ffServers;
     }
@@ -40,21 +40,13 @@ public class FF {
 
                 // Schedule a job
                 if (rcvd.startsWith("JOBN") || rcvd.startsWith("JOBP")) {
-                    // Find first capable
                     Job currentJob = Job.fromJOBN(rcvd);
                     Server selected = Servers.get(0);
                     for(int i=0;i<Servers.size();i++){
                         Server currentServer = Servers.get(i);
-                        boolean fit = currentServer.cores >= currentJob.cores
-                                && currentServer.memory >= currentJob.memory
-                                && currentServer.disk >= currentJob.disk;
-                        boolean idle = currentServer.state.equals("idle");
-                        boolean notIdle = currentServer.state.equals("active") || currentServer.state.equals("booting");
-                        if(fit && idle) {
-                            selected = currentServer;
-                            selected.state = "active";
-                            break;
-                        } else if (fit && notIdle){ // If no server found then select first active/booting
+                        boolean fit = currentServer.canFit(currentJob);
+                        if(fit) {
+                            currentServer.schedule(currentJob);
                             selected = currentServer;
                         } else {
                             System.out.println("NO CAPABLE SERVER FOUND");

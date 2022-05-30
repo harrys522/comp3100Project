@@ -20,6 +20,16 @@ public class dsclient {
                     System.out.println("USING ALGORITHM:" + algorithm);
                 }
             }
+            // Handle ME modifier
+            int efficiencyModifier = 0;
+            for (int i = 0; i < args.length; i++) {
+                if (args[i].equals("-me") && algorithm.equals("me")) {
+                    efficiencyModifier = Integer.parseInt(args[i + 1]);
+                    System.out.println("USING ALGORITHM:" + algorithm);
+                } else if(args[i].equals("-me")) {
+                    System.out.println("Cannot use -me argument when not using the 'most efficient' algorithm");
+                }
+            }
 
             // ds-server handshake
             send(out, "HELO");
@@ -57,6 +67,10 @@ public class dsclient {
                 WF.schedule(Servers, in, out);
 
             } else if (algorithm.equals("bf")) {
+                // Not implemented
+            } else if (algorithm.equals("me")){
+                ME algo = new ME(efficiencyModifier);
+                algo.schedule(in, out);
 
             } else {
                 System.out.println("Algorithm not found:" + algorithm);
