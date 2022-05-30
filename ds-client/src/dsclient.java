@@ -25,8 +25,7 @@ public class dsclient {
             for (int i = 0; i < args.length; i++) {
                 if (args[i].equals("-me") && algorithm.equals("me")) {
                     efficiencyModifier = Integer.parseInt(args[i + 1]);
-                    System.out.println("USING ALGORITHM:" + algorithm);
-                } else if(args[i].equals("-me")) {
+                } else if (args[i].equals("-me")) {
                     System.out.println("Cannot use -me argument when not using the 'most efficient' algorithm");
                 }
             }
