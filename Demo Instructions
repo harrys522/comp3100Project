@@ -1,0 +1,3 @@
+Put src files into demo directory
+javac ./*.java
+sudo ./stage2-test-x86 "java dsclient -a me" -o tt -n

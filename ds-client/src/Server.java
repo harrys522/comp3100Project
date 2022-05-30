@@ -73,7 +73,7 @@ public class Server {
         if(jobsAssigned.isEmpty()){
             this.state = "idle";
         }
-        System.out.println("Updating available resources. Current assigned jobs: " + jobsAssigned.size());
+        System.out.println("Updated resources, current assigned jobs: " + jobsAssigned.size());
     }
     public boolean canFit(Job job){
         boolean fit = this.cores >= job.cores
@@ -87,4 +87,48 @@ public class Server {
                 && this.availableDisk >= job.disk;
         return fit;
     }
+    public boolean exactFits(Job job){
+        boolean fit = this.availableCores == job.cores
+                && this.availableMemory == job.memory
+                && this.availableDisk == job.disk;
+        return fit;
+    }
+    public boolean fractionFits(Job job){
+        boolean fit = false;
+        int nCores = 0;
+        int nMem = 0;
+        int nDisk = 0;
+        for(int i=1; i<10;i++){
+            if(job.cores==availableCores/i){
+                nCores = i;
+            }
+            if(job.memory==availableMemory/i){
+                nMem = i;
+            }
+            if(job.disk==availableDisk/i){
+                nDisk = i;
+            }
+        }
+        if(nCores>1 || nMem>1 || nDisk>1){
+            fit = true;
+        }
+        return fit;
+    }
+
+    public boolean optimiseCPU(Job job, int aim){
+        boolean meetsAim = false;
+        int fullUsage = this.cores*100;
+        return meetsAim = fullUsage - (this.availableCores - job.cores) >= fullUsage * aim;
+    }
+    public boolean optimiseMemory(Job job, int aim){
+        boolean meetsAim = false;
+        int fullUsage = this.cores*100;
+        return meetsAim = fullUsage - (this.availableCores - job.cores) >= fullUsage * aim;
+    }
+    public boolean optimiseDisk(Job job, int aim){
+        boolean meetsAim = false;
+        int fullUsage = this.cores*100;
+        return meetsAim = fullUsage - (this.availableCores - job.cores) >= fullUsage * aim;
+    }
+
 }
